@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: pet-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: pet-service-route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/pets/**
+        - id: mission-service-route
+          uri: http://localhost:8082
+          predicates:
+            - Path=/missions/**
+
+server:
+  port: 8080 # Port par défaut pour l'API Gateway
+
+# Configuration des niveaux de log pour le débogage.
+# Très utile pour voir comment Spring Cloud Gateway traite les requêtes et les routes.
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG # Active les logs DEBUG pour les composants de la Gateway
+    reactor.netty: DEBUG # Active les logs DEBUG pour Reactor Netty, le serveur Web réactif sous-jacent de la Gateway
