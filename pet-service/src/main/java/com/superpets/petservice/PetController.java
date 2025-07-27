@@ -1,7 +1,5 @@
-package com.superpets.petservice.controllers;
+package com.superpets.petservice;
 
-import com.superpets.petservice.models.Pet;
-import com.superpets.petservice.repositories.PetRepository;
 import org.springframework.web.bind.annotation.*;
 
         import java.util.List;

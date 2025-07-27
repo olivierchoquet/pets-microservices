@@ -1,7 +1,6 @@
-package com.superpets.missionservice.controllers;
+package com.superpets.missionservice;
 
-import com.superpets.missionservice.models.Mission;
-import com.superpets.missionservice.repositories.MissionRepository;
+import com.superpets.missionservice.Mission;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

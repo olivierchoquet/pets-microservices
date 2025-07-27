@@ -1,4 +1,4 @@
-package com.superpets.petgateway.config;
+package com.superpets.petgateway;
 
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;

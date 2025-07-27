@@ -1,4 +1,4 @@
-package com.superpets.petgateway.filter;
+package com.superpets.petgateway;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
