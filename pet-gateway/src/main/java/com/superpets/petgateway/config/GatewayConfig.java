@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Configuration
 public class GatewayConfig {
 
@@ -13,7 +15,7 @@ public class GatewayConfig {
     @Bean
     public KeyResolver ipAddressKeyResolver() {
         // This resolver uses the client's IP address as the key for rate limiting
-        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
+        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress());
     }
 
     // You can have other KeyResolver beans for user ID, API Key, etc.
