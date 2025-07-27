@@ -14,13 +14,20 @@ spring:
               uri: http://localhost:8082
               predicates:
                 - Path=/missions/**
-
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    key-resolver: '#{@ipAddressKeyResolver}' # Referencing the bean defined above
+                    redis-rate-limiter.replenishRate: 10 # How many requests per second can a user make without losing any tokens
+                    redis-rate-limiter.burstCapacity: 20  # How many requests a user can do in a single burst
+                    # Optional: specify requestedTokens for each request if you want different costs
+                    # redis-rate-limiter.requestedTokens: 1
+                    # IMPORTANT: Configure Redis connection details
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  # password: your_redis_password # Uncomment if your Redis requires a password
+  # database: 0 # Redis database to use
 server:
   port: 8080 # Port par défaut pour l'API Gateway
-
-# Configuration des niveaux de log pour le débogage.
-# Très utile pour voir comment Spring Cloud Gateway traite les requêtes et les routes.
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG # Active les logs DEBUG pour les composants de la Gateway
-    reactor.netty: DEBUG # Active les logs DEBUG pour Reactor Netty, le serveur Web réactif sous-jacent de la Gateway

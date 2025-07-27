@@ -54,3 +54,10 @@ Envoyer une requête POST (avec Postman par ex.) sur http://localhost:8080/missi
 
     2. Tester le résultat sur http://localhost:8080/pets et missions
 
+
+Filtres
+
+    1. Lancer la DB Redis
+        docker run --name my-redis -p 6379:6379 -d redis/redis-stack-server:latest
+    2. Tester le Request Rate Limiter
+        for i in $(seq 1 30); do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8080/missions; done
